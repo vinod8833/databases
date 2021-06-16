@@ -1,0 +1,40 @@
+# Theory 
+
+https://www.tutorialspoint.com/sql/sql-overview.htm 
+
+# Practical
+
+
+sudo mysql
+
+show databases;
+
+create database school;
+
+use school;
+
+show tables;
+
+CREATE TABLE Students
+(
+StudentID int,
+FirstName varchar(255),
+LastName varchar(255)
+);
+
+INSERT INTO Students (StudentID, FirstName, LastName)
+VALUES (1, 'vinod', 'kumar');
+
+        
+show tables;
+
+select * from Students;
+
+drop database school;
+
+quit
+
+
+
+
+
