@@ -1,0 +1,268 @@
+─[devendradora@parrot]─[~]
+└──╼ $sudo mysql
+[sudo] password for devendradora: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 38
+Server version: 10.3.20-MariaDB-1 Debian buildd-unstable
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use hostel;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [hostel]> select * from Students;
++------+-------+---------+
+| id   | name  | Aadhaar |
++------+-------+---------+
+|    1 | vinod |    4545 |
+|    2 | siri  |   78657 |
+|    3 | vijay |    8788 |
+|    4 | raj   |    5342 |
++------+-------+---------+
+4 rows in set (0.000 sec)
+
+MariaDB [hostel]> select * from Ranks;
++------+-------+------+
+| id   | rank  | age  |
++------+-------+------+
+|    1 | 52352 |   21 |
+|    2 |  7636 |   20 |
+|    3 |  7373 |   18 |
+|    4 |  4227 |   19 |
++------+-------+------+
+4 rows in set (0.000 sec)
+
+MariaDB [hostel]> select s.id, name , aadhaar , rank , age  from Students s join Ranks r on s.id = r.id;
++------+-------+---------+-------+------+
+| id   | name  | aadhaar | rank  | age  |
++------+-------+---------+-------+------+
+|    1 | vinod |    4545 | 52352 |   21 |
+|    2 | siri  |   78657 |  7636 |   20 |
+|    3 | vijay |    8788 |  7373 |   18 |
+|    4 | raj   |    5342 |  4227 |   19 |
++------+-------+---------+-------+------+
+4 rows in set (0.001 sec)
+
+MMariaDB [hostel]> select * from Ranks where Rank=52352;
++------+-------+------+
+| id   | rank  | age  |
++------+-------+------+
+|    1 | 52352 |   21 |
++------+-------+------+
+1 row in set (0.000 sec)
+
+MMariaDB [hostel]> select * from Students where Aadhaar=4545;
++------+-------+---------+
+| id   | name  | Aadhaar |
++------+-------+---------+
+|    1 | vinod |    4545 |
++------+-------+---------+
+1 row in set (0.000 sec)
+
+MariaDB [hostel]> select * from Ranks where age=19;
++------+------+------+
+| id   | rank | age  |
++------+------+------+
+|    4 | 4227 |   19 |
++------+------+------+
+1 row in set (0.000 sec)
+
+MariaDB [hostel]> select * from Students where Aadhaar=78657;
++------+------+---------+
+| id   | name | Aadhaar |
++------+------+---------+
+|    2 | siri |   78657 |
++------+------+---------+
+1 row in set (0.000 sec)
+
+MariaDB [hostel]> select distinct age from Ranks ;
++------+
+| age  |
++------+
+|   21 |
+|   20 |
+|   18 |
+|   19 |
++------+
+4 rows in set (0.001 sec)
+
+MariaDB [hostel]> select distinct age from Ranks order by age;
++------+
+| age  |
++------+
+|   18 |
+|   19 |
+|   20 |
+|   21 |
++------+
+4 rows in set (0.001 sec)
+
+MariaDB [hostel]> select name from Students order by name;
++-------+
+| name  |
++-------+
+| raj   |
+| siri  |
+| vijay |
+| vinod |
++-------+
+4 rows in set (0.001 sec)
+
+MariaDB [hostel]> select name from Students order by name limit 2;
++------+
+| name |
++------+
+| raj  |
+| siri |
++------+
+2 rows in set (0.000 sec)
+
+MariaDB [hostel]> select name from Students where name like 'v%';
++-------+
+| name  |
++-------+
+| vinod |
+| vijay |
++-------+
+2 rows in set (0.000 sec)
+
+MariaDB [hostel]> select max(age) from Ranks;
++----------+
+| max(age) |
++----------+
+|       21 |
++----------+
+1 row in set (0.001 sec)
+
+MariaDB [hostel]> select min(age) from Ranks;
++----------+
+| min(age) |
++----------+
+|       18 |
++----------+
+1 row in set (0.000 sec)
+
+MariaDB [hostel]> select sum(age) from Ranks;
++----------+
+| sum(age) |
++----------+
+|       78 |
++----------+
+1 row in set (0.000 sec)
+
+MariaDB [hostel]> select sum(Rank) from Ranks;
++-----------+
+| sum(Rank) |
++-----------+
+|     71588 |
++-----------+
+1 row in set (0.001 sec)
+
+MariaDB [hostel]> select avg (age) from Ranks;
++-----------+
+| avg (age) |
++-----------+
+|   19.5000 |
++-----------+
+1 row in set (0.000 sec)
+
+MariaDB [hostel]> select * from Ranks where age=17;
+Empty set (0.001 sec)
+
+MariaDB [hostel]> select * from Ranks where age=18;
++------+------+------+
+| id   | rank | age  |
++------+------+------+
+|    3 | 7373 |   18 |
++------+------+------+
+1 row in set (0.000 sec)
+
+MariaDB [hostel]> select * from Ranks where age!=18;
++------+-------+------+
+| id   | rank  | age  |
++------+-------+------+
+|    1 | 52352 |   21 |
+|    2 |  7636 |   20 |
+|    4 |  4227 |   19 |
++------+-------+------+
+3 rows in set (0.000 sec)
+
+MariaDB [hostel]> select * from Ranks where age>17;
++------+-------+------+
+| id   | rank  | age  |
++------+-------+------+
+|    1 | 52352 |   21 |
+|    2 |  7636 |   20 |
+|    3 |  7373 |   18 |
+|    4 |  4227 |   19 |
++------+-------+------+
+4 rows in set (0.001 sec)
+
+MariaDB [hostel]> select * from Ranks where age>=17;
++------+-------+------+
+| id   | rank  | age  |
++------+-------+------+
+|    1 | 52352 |   21 |
+|    2 |  7636 |   20 |
+|    3 |  7373 |   18 |
+|    4 |  4227 |   19 |
++------+-------+------+
+4 rows in set (0.001 sec)
+
+MariaDB [hostel]> select * from Ranks where age<=18;
++------+------+------+
+| id   | rank | age  |
++------+------+------+
+|    3 | 7373 |   18 |
++------+------+------+
+1 row in set (0.001 sec)
+
+MariaDB [hostel]> select * from Ranks where age<18;
+Empty set (0.000 sec)
+
+MariaDB [hostel]> select * from Ranks where age between 18 and 20;
++------+------+------+
+| id   | rank | age  |
++------+------+------+
+|    2 | 7636 |   20 |
+|    3 | 7373 |   18 |
+|    4 | 4227 |   19 |
++------+------+------+
+3 rows in set (0.001 sec)
+
+MariaDB [hostel]> select * from Students where name= 'vinod' or name = 'siri';
++------+-------+---------+
+| id   | name  | Aadhaar |
++------+-------+---------+
+|    1 | vinod |    4545 |
+|    2 | siri  |   78657 |
++------+-------+---------+
+2 rows in set (0.001 sec)
+
+MariaDB [hostel]> select reverse("vinod");
++------------------+
+| reverse("vinod") |
++------------------+
+| doniv            |
++------------------+
+1 row in set (0.000 sec)
+
+MariaDB [hostel]> select char_length("vinod");
++----------------------+
+| char_length("vinod") |
++----------------------+
+|                    5 |
++----------------------+
+1 row in set (0.000 sec)
+
+MariaDB [hostel]> select upper("vinod");
++----------------+
+| upper("vinod") |
++----------------+
+| VINOD          |
++----------------+
+1 row in set (0.000 sec)
