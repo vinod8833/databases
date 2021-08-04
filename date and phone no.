@@ -1,0 +1,214 @@
+Setting environment for using XAMPP for Windows.
+vinod kumar@vinod kumar c:\xampp
+# mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 24
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE Flipkart;
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [(none)]> use databases;
+ERROR 1049 (42000): Unknown database 'databases'
+MariaDB [(none)]> use flipkart;
+Database changed
+MariaDB [flipkart]> create table flipkart(name varchar(255), email varchar(255), amount int);
+Query OK, 0 rows affected (0.213 sec)
+
+
+
+
+MariaDB [flipkart]> desc flipkart;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| name   | varchar(255) | YES  |     | NULL    |       |
+| email  | varchar(255) | YES  |     | NULL    |       |
+| amount | int(11)      | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+3 rows in set (0.129 sec)
+
+MariaDB [flipkart]> insert into Flipkart(name,email,amount) values ("vinod" , "vinod@email.com" ,68865);
+Query OK, 1 row affected (0.186 sec)
+
+MariaDB [flipkart]> select * from flipkart;
++-------+-----------------+--------+
+| name  | email           | amount |
++-------+-----------------+--------+
+| vinod | vinod@email.com |  68865 |
++-------+-----------------+--------+
+1 row in set (0.044 sec)
+
+MariaDB [flipkart]> insert into Flipkart(name,email,amount) values ("siri" , "siri@email.com" ,68865),("dev" , "dev@gmail.com" ,36689);
+Query OK, 2 rows affected (0.269 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [flipkart]> insert into Flipkart(name,email,amount) values ("vijay" , "vijay@email.com" ,68865),("dileep" , "dileep@gmail.com" ,36689);
+Query OK, 2 rows affected (0.089 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [flipkart]> insert into Flipkart(name,email,amount) values ("nikhil" , "nikhil@email.com" ,22225),("raj" , "raj@gmail.com" ,36566);
+Query OK, 2 rows affected (0.083 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [flipkart]> select * from flipkart;
++--------+------------------+--------+
+| name   | email            | amount |
++--------+------------------+--------+
+| vinod  | vinod@email.com  |  68865 |
+| siri   | siri@email.com   |  68865 |
+| dev    | dev@gmail.com    |  36689 |
+| vijay  | vijay@email.com  |  68865 |
+| dileep | dileep@gmail.com |  36689 |
+| nikhil | nikhil@email.com |  22225 |
+| raj    | raj@gmail.com    |  36566 |
++--------+------------------+--------+
+7 rows in set (0.001 sec)
+
+MariaDB [flipkart]> desc peoples;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| name  | varchar(255) | YES  |     | NULL    |       |
+| dob   | int(11)      | YES  |     | NULL    |       |
+| date  | int(11)      | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.037 sec)
+
+MariaDB [flipkart]> insert into Students(name,time,date) values ("vinod" , '03:45:06' , "2010/04/30");
+Query OK, 1 row affected, 1 warning (0.116 sec)
+
+MariaDB [flipkart]> select * from Students;
++-------+------+---------+------------+
+| name  | time | phoneno | Date       |
++-------+------+---------+------------+
+| vinod |    3 |    NULL | 2010/04/30 |
++-------+------+---------+------------+
+1 row in set (0.000 sec)
+
+MariaDB [flipkart]> insert into Students(name,time,phoneno,date) values ("vinod" , '03:45:06' , '1234567898' , "2010/04/30");
+Query OK, 1 row affected, 1 warning (0.058 sec)
+
+MariaDB [flipkart]> select * from Students;
++-------+------+------------+------------+
+| name  | time | phoneno    | Date       |
++-------+------+------------+------------+
+| vinod |    3 |       NULL | 2010/04/30 |
+| vinod |    3 | 1234567898 | 2010/04/30 |
++-------+------+------------+------------+
+2 rows in set (0.000 sec)
+
+MariaDB [flipkart]> update Students set name='vijay' where phoneno=NULL;
+Query OK, 0 rows affected (0.111 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+MariaDB [flipkart]> select * from Students;
++-------+------+------------+------------+
+| name  | time | phoneno    | Date       |
++-------+------+------------+------------+
+| vinod |    3 |       NULL | 2010/04/30 |
+| vinod |    3 | 1234567898 | 2010/04/30 |
++-------+------+------------+------------+
+2 rows in set (0.000 sec)
+
+MariaDB [flipkart]> insert into Students(name,time,phoneno,date) values ("siri" , "03:45:06" , '1234567898' , "2010/04/30"),("dev" , "11:45:06" , '4676657898' , "1910/04/30"),("vijay" , "12:33:36" , '987654321' , "2020/08/20"),("dileep" , "12:44:22" , '8745345698' , "2003/12/30"),("nikhil" , "09:45:06" , '1122334455' , "2004/04/30");
+Query OK, 5 rows affected, 7 warnings (0.142 sec)
+Records: 5  Duplicates: 0  Warnings: 7
+
+MariaDB [flipkart]> select * from Students;
++--------+------+------------+------------+
+| name   | time | phoneno    | Date       |
++--------+------+------------+------------+
+| vinod  |    3 |       NULL | 2010/04/30 |
+| vinod  |    3 | 1234567898 | 2010/04/30 |
+| siri   |    3 | 1234567898 | 2010/04/30 |
+| siri   |    3 | 1234567898 | 2010/04/30 |
+| dev    |   11 | 2147483647 | 1910/04/30 |
+| vijay  |   12 |  987654321 | 2020/08/20 |
+| dileep |   12 | 2147483647 | 2003/12/30 |
+| nikhil |    9 | 1122334455 | 2004/04/30 |
++--------+------+------------+------------+
+8 rows in set (0.000 sec)
+
+MariaDB [flipkart]> select f.name,email,amount from flipkart f join Students s on f.name=s.name;
++--------+------------------+--------+
+| name   | email            | amount |
++--------+------------------+--------+
+| vinod  | vinod@email.com  |  68865 |
+| vinod  | vinod@email.com  |  68865 |
+| siri   | siri@email.com   |  68865 |
+| siri   | siri@email.com   |  68865 |
+| dev    | dev@gmail.com    |  36689 |
+| vijay  | vijay@email.com  |  68865 |
+| dileep | dileep@gmail.com |  36689 |
+| nikhil | nikhil@email.com |  22225 |
++--------+------------------+--------+
+8 rows in set (0.120 sec)
+
+MariaDB [flipkart]> select f.name,email,time,phoneno,date,amount from flipkart f join Students s on f.name=s.name;
++--------+------------------+------+------------+------------+--------+
+| name   | email            | time | phoneno    | date       | amount |
++--------+------------------+------+------------+------------+--------+
+| vinod  | vinod@email.com  |    3 |       NULL | 2010/04/30 |  68865 |
+| vinod  | vinod@email.com  |    3 | 1234567898 | 2010/04/30 |  68865 |
+| siri   | siri@email.com   |    3 | 1234567898 | 2010/04/30 |  68865 |
+| siri   | siri@email.com   |    3 | 1234567898 | 2010/04/30 |  68865 |
+| dev    | dev@gmail.com    |   11 | 2147483647 | 1910/04/30 |  36689 |
+| vijay  | vijay@email.com  |   12 |  987654321 | 2020/08/20 |  68865 |
+| dileep | dileep@gmail.com |   12 | 2147483647 | 2003/12/30 |  36689 |
+| nikhil | nikhil@email.com |    9 | 1122334455 | 2004/04/30 |  22225 |
++--------+------------------+------+------------+------------+--------+
+8 rows in set (0.001 sec)
+
+
+MariaDB [flipkart]> select * from Students;
++--------+------+------------+------------+
+| name   | time | phoneno    | Date       |
++--------+------+------------+------------+
+| vinod  |    3 |       NULL | 2010/04/30 |
+| vinod  |    3 | 1234567898 | 2010/04/30 |
+| siri   |    3 | 1234567898 | 2010/04/30 |
+| siri   |    3 | 1234567898 | 2010/04/30 |
+| dev    |   11 | 2147483647 | 1910/04/30 |
+| vijay  |   12 |  987654321 | 2020/08/20 |
+| dileep |   12 | 2147483647 | 2003/12/30 |
+| nikhil |    9 | 1122334455 | 2004/04/30 |
++--------+------+------------+------------+
+8 rows in set (0.001 sec)
+
+MariaDB [flipkart]> select f.name,email,amount from flipkart f join Students s on f.name=s.name;
++--------+------------------+--------+
+| name   | email            | amount |
++--------+------------------+--------+
+| vinod  | vinod@email.com  |  68865 |
+| vinod  | vinod@email.com  |  68865 |
+| siri   | siri@email.com   |  68865 |
+| siri   | siri@email.com   |  68865 |
+| dev    | dev@gmail.com    |  36689 |
+| vijay  | vijay@email.com  |  68865 |
+| dileep | dileep@gmail.com |  36689 |
+| nikhil | nikhil@email.com |  22225 |
++--------+------------------+--------+
+8 rows in set (0.001 sec)
+
+MariaDB [flipkart]> select f.name,email,amount,phoneno,date from flipkart f join Students s on f.name=s.name;
++--------+------------------+--------+------------+------------+
+| name   | email            | amount | phoneno    | date       |
++--------+------------------+--------+------------+------------+
+| vinod  | vinod@email.com  |  68865 |       NULL | 2010/04/30 |
+| vinod  | vinod@email.com  |  68865 | 1234567898 | 2010/04/30 |
+| siri   | siri@email.com   |  68865 | 1234567898 | 2010/04/30 |
+| siri   | siri@email.com   |  68865 | 1234567898 | 2010/04/30 |
+| dev    | dev@gmail.com    |  36689 | 2147483647 | 1910/04/30 |
+| vijay  | vijay@email.com  |  68865 |  987654321 | 2020/08/20 |
+| dileep | dileep@gmail.com |  36689 | 2147483647 | 2003/12/30 |
+| nikhil | nikhil@email.com |  22225 | 1122334455 | 2004/04/30 |
++--------+------------------+--------+------------+------------+
+8 rows in set (0.001 sec)
+
+MariaDB [flipkart]>
+
