@@ -16,6 +16,15 @@ MariaDB [(none)]> use databases;
 ERROR 1049 (42000): Unknown database 'databases'
 MariaDB [(none)]> use flipkart;
 Database changed
+MariaDB [flipkart]> show tables;
++--------------------+
+| Tables_in_flipkart |
++--------------------+
+| flipkart           |
+| orders             |
+| students           |
++--------------------+
+3 rows in set (0.001 sec)
 MariaDB [flipkart]> create table flipkart(name varchar(255), email varchar(255), amount int);
 Query OK, 0 rows affected (0.213 sec)
 
@@ -210,5 +219,66 @@ MariaDB [flipkart]> select f.name,email,amount,phoneno,date from flipkart f join
 +--------+------------------+--------+------------+------------+
 8 rows in set (0.001 sec)
 
-MariaDB [flipkart]>
+MariaDB [flipkart]>MariaDB [flipkart]> insert into Orders (email,address) values ("siri@email.com" , "berhampur"),("dev@gmail.com" , "hyderabad"),("vijay@email.com" , "mumbai"), ("dileep@gmail.com" , "kalkata"),("nikhil@email.com" , "america"),("raj@gmail.com" ,"usa");
+Query OK, 6 rows affected (0.099 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [flipkart]> select * from Orders;
++------------------+-----------+
+| email            | address   |
++------------------+-----------+
+| vinod@email.com  | patrapur  |
+| siri@email.com   | berhampur |
+| dev@gmail.com    | hyderabad |
+| vijay@email.com  | mumbai    |
+| dileep@gmail.com | kalkata   |
+| nikhil@email.com | america   |
+| raj@gmail.com    | usa       |
++------------------+-----------+
+7 rows in set (0.000 sec)
+MariaDB [flipkart]> desc orders;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| email   | varchar(255) | YES  |     | NULL    |       |
+| address | varchar(255) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+2 rows in set (0.140 sec)
+
+MariaDB [flipkart]> desc students;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| name    | varchar(255) | YES  |     | NULL    |       |
+| time    | int(11)      | YES  |     | NULL    |       |
+| phoneno | int(11)      | YES  |     | NULL    |       |
+| Date    | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+4 rows in set (0.041 sec)
+
+MariaDB [flipkart]> desc flipkart;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| name   | varchar(255) | YES  |     | NULL    |       |
+| email  | varchar(255) | YES  |     | NULL    |       |
+| amount | int(11)      | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+3 rows in set (0.035 sec)
+
+
+MariaDB [flipkart]> select o.email , o.address, f.name, f.amount , s.time, s.phoneno, s.Date from orders o join flipkart f join students s on o.email=f.email and f.name=s.name;
++------------------+-----------+--------+--------+------+------------+------------+
+| email            | address   | name   | amount | time | phoneno    | Date       |
++------------------+-----------+--------+--------+------+------------+------------+
+| vinod@email.com  | patrapur  | vinod  |  68865 |    3 |       NULL | 2010/04/30 |
+| vinod@email.com  | patrapur  | vinod  |  68865 |    3 | 1234567898 | 2010/04/30 |
+| siri@email.com   | berhampur | siri   |  68865 |    3 | 1234567898 | 2010/04/30 |
+| siri@email.com   | berhampur | siri   |  68865 |    3 | 1234567898 | 2010/04/30 |
+| dev@gmail.com    | hyderabad | dev    |  36689 |   11 | 2147483647 | 1910/04/30 |
+| vijay@email.com  | mumbai    | vijay  |  68865 |   12 |  987654321 | 2020/08/20 |
+| dileep@gmail.com | kalkata   | dileep |  36689 |   12 | 2147483647 | 2003/12/30 |
+| nikhil@email.com | america   | nikhil |  22225 |    9 | 1122334455 | 2004/04/30 |
++------------------+-----------+--------+--------+------+------------+------------+
+8 rows in set (0.002 sec)
 
